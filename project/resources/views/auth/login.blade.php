@@ -6,7 +6,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-
+                <div>
+                    <!--<p> ID : </p>
+                    <p> Username : }</p>
+                    <p> Password : </p> -->
+                </div>
+                
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
