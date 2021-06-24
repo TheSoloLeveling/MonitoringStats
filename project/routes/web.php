@@ -13,9 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return env('CREATOR');
+Route::get('/login', function () {
+    return view('auth.login');
 });
+
+Route::get('/register', function () {
+    return view('auth.register');
+});
+
+Route::get('/welcome', function () {
+    return view("auth.passwords.email");
+});
+
+Route::get('/', function () {
+    return redirect('/');
+});
+
+
 
 Auth::routes();
 
