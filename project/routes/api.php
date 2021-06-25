@@ -23,7 +23,11 @@ Route::get('/users', function () {
 
 Route::post('/users', function () {
     
-
+    return User::create([
+        'name' => 'ilyas',
+        'email'=> 'ilyas@gmail.com',
+        'password'=> 'ilyasilyas'
+    ]);
 
 });
 

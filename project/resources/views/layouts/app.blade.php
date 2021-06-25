@@ -1,6 +1,100 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Source+Sans+Pro:wght@300&display=swap');
+
+        nav {
+            position: absolute;
+            top: 70px;
+            width: 770px;
+            height: 50px;
+            background: #d8e2dc;
+            border-radius: 8px;
+            font-size: 0;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
+            min-width: 200px;
+        }
+
+        nav a {
+            font-size: 15px;
+            text-transform: uppercase;
+            color: black;
+            text-decoration: none;
+            line-height: 20px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            text-align: center;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: bold;
+        }
+
+        nav .animation {
+            position: absolute;
+            height: 48px;
+            top: 0;
+            border: 1px solid #264653;
+            box-shadow: 0 2px 3px 0 rgba(148, 148, 148, 0.5);
+            border-radius: 8px;
+        }
+
+        a:nth-child(1) {
+            width: 100px;
+            
+        }
+
+        nav .start-home,
+        a:nth-child(1):hover~.animation {
+            width: 100px;
+            left: 0;
+        }
+
+        a:nth-child(2) {
+            width: 110px;
+        }
+
+        nav .start-about,
+        a:nth-child(2):hover~.animation {
+            width: 110px;
+            left: 100px;
+        }
+
+        a:nth-child(3) {
+            width: 100px;
+        }
+
+        nav .start-blog,
+        a:nth-child(3):hover~.animation {
+            width: 100px;
+            left: 210px;
+        }
+
+        a:nth-child(4) {
+            width: 160px;
+        }
+
+        nav .start-portfolio,
+        a:nth-child(4):hover~.animation {
+            width: 160px;
+            left: 310px;
+        }
+
+        a:nth-child(5) {
+            width: 100px;
+        }
+
+        nav .start-contact,
+        a:nth-child(5):hover~.animation {
+            width: 118px;
+            left: 470px;
+        }
+
+ </style>
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,38 +112,25 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+  
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="containern">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
+                @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
+                              
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
+                            
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
                         @else
                             <li class="nav-item dropdown">
@@ -71,10 +152,13 @@
                             </li>
                         @endguest
                     </ul>
+                    <div class ="animation start-home"></div> 
                 </div>
-            </div>
-        </nav>
+        
+            
 
+        </nav>
+      
         <main class="py-4">
             @yield('content')
         </main>
