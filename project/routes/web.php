@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsersController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,7 @@ use App\Http\Controllers\UsersController;
 //Route::get('/test/{id}', [UsersController::class, 'show']);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
