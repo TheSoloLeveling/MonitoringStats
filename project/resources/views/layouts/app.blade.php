@@ -91,6 +91,9 @@
             width: 118px;
             left: 470px;
         }
+        .navbar-brand{
+            padding-bottom: 500px;
+        }
 
  </style>
 
@@ -116,13 +119,16 @@
   
 </head>
 <body>
+    
     <div id="app">
+       
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="containern">
+                @guest
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                @guest
+                
                             @if (Route::has('login'))
                               
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
