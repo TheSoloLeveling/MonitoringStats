@@ -19,10 +19,16 @@ use App\Http\Controllers\UsersController;
 //Route::get('/test/{id}', [UsersController::class, 'show']);
 
 Route::get('/', function () {
-    return view('auth.login');
+    
+    if(Auth::check()){
+        return view('layouts.app');
+    }
+    else{
+        return view('auth.login');
+    }
+
+    
 });
-
-
 
 Auth::routes();
 
