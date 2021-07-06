@@ -29,6 +29,15 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/weather/searchDate/{dateBegin}/{dateEnd}', [WeatherController::class, 'searchByDate']);
+
+Route::get('/weather/searchObject/{attribut}/{value1}/{value2}', [WeatherController::class, 'searchByValue']);
+
+Route::get('/weather/searchDate&Object/{attribut}/{dateBegin}/{dateEnd}/{value1}/{value2}', [WeatherController::class, 'searchAll']);
+
+Route::get('/weather/searchAll/{attribut}', [WeatherController::class, 'searchByElement']);
+
+
 
 /*Protected routes*/
 
@@ -39,13 +48,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['auth:sanctum']], function() {
  
 
-    Route::get('/weather/search/{attribut}', [WeatherController::class, 'searchByElement']);
+    
+    
+    
 
-    //Route::get('/weather/search/{attribut}/{dateBegin}/{dateEnd}', [WeatherController::class, 'searchByElement']);
-
-    Route::get('/weather/search/{dateBegin}/{dateEnd}', [WeatherController::class, 'searchByDate']);
-
-    Route::get('/weather', [WeatherController::class, 'index']);
-
-    Route::get('/weather/index/{id}', [WeatherController::class, 'show']);
+    
 });

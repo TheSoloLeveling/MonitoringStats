@@ -85,14 +85,10 @@ class WeatherController extends Controller
      */
     public function searchByDate($dateBegin, $dateEnd)
     {
-        $format1 = 'Y-m-d';
-        $format2 = 'H:i:s';
-        $date1 = Carbon::parse($dateBegin)->format($format1);
-        $time1 = Carbon::parse($dateBegin)->format($format2);
-        $date2 = Carbon::parse($dateEnd)->format($format1);
-        $time2 = Carbon::parse($dateEnd)->format($format2);
-        
-        return WeatherStation::whereDate('Created_At' , '<=' , $date1)->get(); 
+        $d1 = Carbon::parse($dateBegin);
+        $d2 = Carbon::parse($dateEnd);
+
+        return WeatherStation::select()->whereBetween('Created_At', [$d1, $d2])->orderBy('Created_At', 'DESC')->get();
            
     }
 
@@ -104,7 +100,50 @@ class WeatherController extends Controller
      */
     public function searchByElement($attribut)
     {
-        return WeatherStation::select($attribut, 'Created_At')->groupby()->get();
+        if ($attribut == 'all'){
+            return WeatherStation::select()->orderBy('Created_At', 'DESC')->get();
+        }
+        else{
+            return WeatherStation::select($attribut, 'Created_At')->orderBy('Created_At', 'DESC')->get();
+        }
+        
+           
+    }
+
+    public function searchByValue($attribut, $value1, $value2)
+    {
+        $v1 = (Double) $value1;
+        $v2 = (Double) $value2;
+
+        if(empty($v1) || empty($v2))
+        {
+            return 'Donnes errones';
+        }
+        if($v2 < $v1){
+            return false;
+        }
+        else{
+            return WeatherStation::select()->where($attribut, '>=', $v1)->where($attribut, '<=', $v2)
+            ->orderBy('Created_At', 'DESC')->get();
+        } 
+           
+    }
+
+    public function searchAll($attribut, $dateBegin, $dateEnd, $value1, $value2)
+    {
+        $d1 = Carbon::parse($dateBegin);
+        $d2 = Carbon::parse($dateEnd);
+
+        $v1 = (Double) $value1;
+        $v2 = (Double) $value2;
+
+        if(empty($v1) || empty($v2)){
+            return WeatherStation::select()->whereBetween('Created_At', [$d1, $d2])
+            ->orderBy('Created_At', 'DESC')->get();
+        }
+        
+        return WeatherStation::select()->whereBetween('Created_At', [$d1, $d2])->where($attribut, '>=', $v1)->where($attribut, '<=', $v2)
+            ->orderBy('Created_At', 'DESC')->get();
            
     }
 }

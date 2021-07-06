@@ -13,6 +13,7 @@ class WeatherStation extends Eloquent
 
     protected $connection = 'mongodb';
     protected $table = 'weather_stations';
+    
     protected $fillable = [
         'Created_At',
         'WIND_Speed',
