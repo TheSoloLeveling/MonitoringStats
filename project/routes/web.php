@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\LoginController;
 
 
 /*
@@ -16,20 +17,22 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-//Route::get('/test/{id}', [UsersController::class, 'show']);
 
-Route::get('/', function () {
-    
-    if(Auth::check()){
-        return view('layouts.app');
-    }
-    else{
-        return view('auth.login');
-    }
+//Route::get('login')
 
-    
-});
+
+
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+
+Route::get('/test', [App\Http\Controllers\LoginController::class, 'apiWithoutKey']);
+
+/*Route::prefix('test')->group(function () {
+    Route::get('apiwithoutkey', [LoginController::class, 'apiWithoutKey'])->name('apiWithoutKey');
+    //Route::get('apiwithkey', [ProjectController::class, 'apiWithKey'])->name('apiWithKey');
+});*/
+
+
+//Route::resource('test', LoginController::class);
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

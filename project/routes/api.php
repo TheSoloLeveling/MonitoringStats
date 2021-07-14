@@ -37,6 +37,8 @@ Route::get('/weather/searchDate&Object/{attribut}/{dateBegin}/{dateEnd}/{value1}
 
 Route::get('/weather/searchAll/{attribut}', [WeatherController::class, 'searchByElement']);
 
+Route::get('/weather', [WeatherController::class, 'index']);
+
 
 
 /*Protected routes*/
