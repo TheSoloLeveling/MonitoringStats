@@ -11,19 +11,29 @@ class LoginController extends Controller
     
     public function apiWithoutKey()
     {
-        $client = new Client(); //GuzzleHttp\Client
-        $url = "http://127.0.0.1:8000/api/weather/searchObject/Temperature/20.95/21";
+        
+        return Http::get('http://127.0.0.1:8000/api/weather/searchObject/Temperature/20.95/21')['name'];
 
-
-        $response = $client->request('GET', $url, [
-            'verify'  => false,
-        ]);
-
-        $responseBody = json_decode($response->getBody());
-
-        return $responseBody;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     public function apiWithKey()
     {
         $client = new Client();
